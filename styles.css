@@ -18,3 +18,36 @@
   a {
     text-decoration: none;
   }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .calculator {
+    min-width: 350px;
+    min-height: 500px;
+    background-color: rgb(55, 55, 55);
+    border-radius: 1em 1em 2em 2em;
+  }
+  .top-calculator {
+    height: 30px;
+  }
+  .screen {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(25, 25, 26);
+    height: 100px;
+    border-radius: .6em;
+  }
+  .inner-screen:before {
+    padding: 0 .5em 0 0;
+    content: "123 + 123";
+    color: #00cc00;
+    font-size: 2.5em;
+    text-shadow: 0 0 2px #00cc00,
+     0 0 5px #00cc00;
+     font-weight: 100;
+  }
