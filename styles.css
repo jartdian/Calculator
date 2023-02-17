@@ -1,53 +1,92 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    background-color: rgb(47, 47, 47);
-  }
-  button {
-    cursor: pointer;
-  }
-  button:active {
-    transform: translateY(2px);
-  }
-  ul  {
-    list-style-type: none;
-  }
-  a {
-    text-decoration: none;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(50, 34, 34);
+}
 
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .calculator {
-    min-width: 350px;
-    min-height: 500px;
-    background-color: rgb(55, 55, 55);
-    border-radius: 1em 1em 2em 2em;
-  }
-  .top-calculator {
-    height: 30px;
-  }
-  .screen {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: rgb(25, 25, 26);
-    height: 100px;
-    border-radius: .6em;
-  }
-  .inner-screen:before {
-    padding: 0 .5em 0 0;
-    content: "123 + 123";
-    color: #00cc00;
-    font-size: 2.5em;
-    text-shadow: 0 0 2px #00cc00,
-     0 0 5px #00cc00;
-     font-weight: 100;
-  }
+body {
+  background-color: rgb(47, 47, 47);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.calculator {
+  min-width: 350px;
+  min-height: 500px;
+  background-color: rgb(29, 29, 29);
+  border-radius: 1em 1em 2em 2em;
+}
+
+.top-calculator {
+  height: 30px;
+}
+
+.screen {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+
+  margin: 0 auto;
+  background-color: rgb(61, 61, 61);
+  height: 100px;
+  border-radius: 0.6em;
+}
+
+.inner-screen:before {
+  padding: 0 0.3em 0 0;
+  content: "123 + 123";
+  color: #00cc00;
+  font-size: 2.5em;
+  text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
+  font-weight: 100;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 350px;
+  gap: 1em;
+  justify-content: space-evenly;
+  padding: 1em 1em;
+}
+
+button {
+  width: 2em;
+  height: 2em;
+  font-size: 2em;
+  border: none;
+  border-radius: 0.7em;
+  background-color: rgb(155, 155, 155);
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+.first-row {
+  background-color: rgb(19, 19, 19) !important;
+  color: rgb(162, 162, 162);
+}
