@@ -3,9 +3,14 @@ const resetAllBtn = document.querySelector(".acBtn");
 const operateBtns = [...document.querySelectorAll(".operateBtn")];
 const numberBtns = [...document.querySelectorAll(".num")];
 const equalsBtn = document.querySelector(".equalsBtn");
+const clearLastBtn = document.querySelector(".cBtn");
 
 function resetAll() {
   return (innerScreen.textContent = "");
+}
+
+function clearLastOp() {
+  return (innerScreen.textContent = innerScreen.textContent.slice(0, -1));
 }
 
 function returnNumber() {
@@ -15,12 +20,17 @@ function returnNumber() {
   return;
 }
 function returnOperator() {
-    innerScreen.textContent += this.innerText
+  innerScreen.textContent += this.innerText;
 }
 function isEqualTo() {
-  let splitNumsAndOps = innerScreen.textContent.split("");
-  let result = operate(splitNumsAndOps[1], parseInt(splitNumsAndOps[0]),parseInt(splitNumsAndOps[2]))
-  innerScreen.textContent = result 
+  let splitOperator = innerScreen.textContent
+    .split("")
+    .filter((e) => e == "/" || e == "*" || e == "+" || e == "-");
+  let operator = splitOperator[0];
+  let splitNums = innerScreen.textContent.split(operator);
+  let firstNum = parseFloat(splitNums[0]);
+  let secondNum = parseFloat(splitNums[1]);
+  innerScreen.textContent = operate(operator, firstNum, secondNum);
 }
 
 function add(a, b) {
@@ -30,10 +40,10 @@ function subtract(a, b) {
   return a - b;
 }
 function multiply(a, b) {
-  return a * b;
+  return parseFloat((a * b).toFixed(4));
 }
 function divide(a, b) {
-  return a / b;
+  return parseFloat((a / b).toFixed(4));
 }
 
 function operate(operator, a, b) {
@@ -62,3 +72,4 @@ operateBtns.map((button) => {
 numberBtns.map((button) => {
   return button.addEventListener("click", returnNumber);
 });
+clearLastBtn.addEventListener("click", clearLastOp);
