@@ -1,16 +1,16 @@
 const innerScreen = document.querySelector(".innerScreen");
-const resetAllBtn = document.querySelector(".acBtn");
+const clearAllBtn = document.querySelector(".acBtn");
 const operateBtns = [...document.querySelectorAll(".operateBtn")];
 const numberBtns = [...document.querySelectorAll(".num")];
 const equalsBtn = document.querySelector(".equalsBtn");
 const clearLastBtn = document.querySelector(".cBtn");
 const squareRootBtn = document.querySelector(".squareRootBtn");
 
-function resetAll() {
+function clearAll() {
   return (innerScreen.textContent = "");
 }
 
-function clearLastOp() {
+function clearLastOperation() {
   return (innerScreen.textContent = innerScreen.textContent.slice(0, -1));
 }
 
@@ -42,7 +42,7 @@ function isEqualTo() {
   }
 }
 
-function squareRoot() {
+function squareRootScreenText() {
   innerScreen.textContent = this.innerText
 }
 
@@ -65,23 +65,19 @@ function getSqrt(a) {
 
 function operate(operator, a, b) {
   if (operator == "+") {
-    console.log(add(a, b));
     return add(a, b);
   } else if (operator == "-") {
-    console.log(subtract(a, b));
     return subtract(a, b);
   } else if (operator == "*") {
-    console.log(multiply(a, b));
     return multiply(a, b);
   } else if (operator == "/") {
-    console.log(divide(a, b));
     return divide(a, b);
   } else {
     return;
   }
 }
 
-resetAllBtn.addEventListener("click", resetAll);
+clearAllBtn.addEventListener("click", clearAll);
 equalsBtn.addEventListener("click", isEqualTo);
 operateBtns.map((button) => {
   button.addEventListener("click", returnOperator);
@@ -89,5 +85,5 @@ operateBtns.map((button) => {
 numberBtns.map((button) => {
   return button.addEventListener("click", returnNumber);
 });
-clearLastBtn.addEventListener("click", clearLastOp);
-squareRootBtn.addEventListener("click", squareRoot)
+clearLastBtn.addEventListener("click", clearLastOperation);
+squareRootBtn.addEventListener("click", squareRootScreenText)
