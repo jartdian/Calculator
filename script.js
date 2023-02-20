@@ -15,35 +15,46 @@ function clearLastOperation() {
 }
 
 function returnNumber() {
-  if (innerScreen.textContent.length < 14) {
+  if (innerScreen.textContent.length < 13) {
     innerScreen.textContent += this.innerText;
   }
   return;
 }
 function returnOperator() {
+  // remove tailing operators
+  let screenText = innerScreen.textContent;
+  if (screenText.match(/[+-/*]/)) {
+    return;
+  }
   innerScreen.textContent += this.innerText;
 }
 function isEqualTo() {
-  if(innerScreen.textContent.includes("√")){
-    let splitInnerText = innerScreen.textContent.split("")
-    let num = splitInnerText.slice(1,).join("")
-    innerScreen.textContent = getSqrt(num)
-  }
-  else {
-
-    let splitOperator = innerScreen.textContent
-    .split("")
-    .filter((e) => e == "/" || e == "*" || e == "+" || e == "-");
-    let operator = splitOperator[0];
-    let splitNums = innerScreen.textContent.split(operator);
-    let firstNum = parseFloat(splitNums[0]);
-    let secondNum = parseFloat(splitNums[1]);
-    innerScreen.textContent = operate(operator, firstNum, secondNum);
+  if (
+    // check if the operations ends with a number and does not begin with an operator
+    innerScreen.textContent.slice(-1).match(/[0-9]/) &&
+    !innerScreen.textContent.slice(0, 1).match(/[+-/*]/)
+  ) {
+    if (innerScreen.textContent.includes("√")) {
+      let splitInnerText = innerScreen.textContent.split("");
+      let num = splitInnerText.slice(1).join("");
+      innerScreen.textContent = getSqrt(num);
+    } else {
+      let splitOperator = innerScreen.textContent
+        .split("")
+        .filter((e) => e == "/" || e == "*" || e == "+" || e == "-");
+      let operator = splitOperator[0];
+      let splitNums = innerScreen.textContent.split(operator);
+      let firstNum = parseFloat(splitNums[0]);
+      let secondNum = parseFloat(splitNums[1]);
+      innerScreen.textContent = operate(operator, firstNum, secondNum);
+    }
+  } else if (innerScreen.textContent.slice(0, 1) == "-") {
+    return;
   }
 }
 
 function squareRootScreenText() {
-  innerScreen.textContent = this.innerText
+  innerScreen.textContent = this.innerText;
 }
 
 function add(a, b) {
@@ -60,7 +71,7 @@ function divide(a, b) {
 }
 
 function getSqrt(a) {
-  return parseFloat(Math.sqrt(a).toFixed(6))
+  return parseFloat(Math.sqrt(a).toFixed(6));
 }
 
 function operate(operator, a, b) {
@@ -86,4 +97,4 @@ numberBtns.map((button) => {
   return button.addEventListener("click", returnNumber);
 });
 clearLastBtn.addEventListener("click", clearLastOperation);
-squareRootBtn.addEventListener("click", squareRootScreenText)
+squareRootBtn.addEventListener("click", squareRootScreenText);
