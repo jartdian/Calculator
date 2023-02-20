@@ -125,6 +125,7 @@ button:hover {
     2px 1px 0 #171717, 2px 2px 0 #181818,
     3px 2px 0 #171717, 3px 3px 0 #181818,
     -5px 20px 20px -15px #171717;
+    flex-basis: 22%;
 }
 .firstRow:focus{
   box-shadow: none !important;
