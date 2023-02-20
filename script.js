@@ -67,6 +67,9 @@ function multiply(a, b) {
   return parseFloat((a * b).toFixed(6));
 }
 function divide(a, b) {
+  if(b === 0) {
+    return "Nice try"
+  }
   return parseFloat((a / b).toFixed(6));
 }
 
