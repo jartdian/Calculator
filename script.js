@@ -5,6 +5,7 @@ const numberBtns = [...document.querySelectorAll(".num")];
 const equalsBtn = document.querySelector(".equalsBtn");
 const clearLastBtn = document.querySelector(".cBtn");
 const squareRootBtn = document.querySelector(".squareRootBtn");
+const commaBtn = document.querySelector(".commaBtn");
 
 function clearAll() {
   return (innerScreen.textContent = "");
@@ -20,17 +21,19 @@ function returnNumber() {
   }
   return;
 }
+
 function returnOperator() {
   // remove tailing operators
   let screenText = innerScreen.textContent;
-  if (screenText.match(/[+-/*]/)) {
+  if (screenText.slice(-1).match(/[+-/*]/)) {
+    console.log("bug");
     return;
   }
   innerScreen.textContent += this.innerText;
 }
 function isEqualTo() {
   if (
-    // check if the operations ends with a number and does not begin with an operator
+    // check if the operation ends with a number and does not begin with an operator
     innerScreen.textContent.slice(-1).match(/[0-9]/) &&
     !innerScreen.textContent.slice(0, 1).match(/[+-/*]/)
   ) {
@@ -57,6 +60,14 @@ function squareRootScreenText() {
   innerScreen.textContent = this.innerText;
 }
 
+function addDecimal() {
+  if (innerScreen.textContent.includes(".") && !innerScreen.textContent.slice(-1).match(/[0-9]/)) {
+    return
+  }
+  console.log("does not include .");
+  innerScreen.textContent += this.innerText;
+}
+
 function add(a, b) {
   return a + b;
 }
@@ -67,8 +78,8 @@ function multiply(a, b) {
   return parseFloat((a * b).toFixed(6));
 }
 function divide(a, b) {
-  if(b === 0) {
-    return "Nice try"
+  if (b === 0) {
+    return "Nice try";
   }
   return parseFloat((a / b).toFixed(6));
 }
@@ -91,6 +102,7 @@ function operate(operator, a, b) {
   }
 }
 
+commaBtn.addEventListener("click", addDecimal);
 clearAllBtn.addEventListener("click", clearAll);
 equalsBtn.addEventListener("click", isEqualTo);
 operateBtns.map((button) => {
